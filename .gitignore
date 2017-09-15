@@ -4,3 +4,5 @@
 EmoCat_server/node_modules/
 EmoCat_server/public/
 EmoCat_server/bower_components/
+EmoCat_server/server/config
+EmoCat_server/webdata/
