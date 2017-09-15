@@ -19,11 +19,11 @@ fs.readdirSync(__dirname)
     });
 
 //DB init.
-// var modelProto = ['board.js', 'board_post.js', 'board_attachment.js', 'classes_lecture.js', 'dept.js', 'professor.js', 'subjects.js', 'subscribe.js', 'system.js', 'system_lecture.js', 'timemodel.js'];
-// modelProto.forEach(function(file) {
-//     var model = sequelize.import(path.join(__dirname, file));
-//     db[model.name] = model;
-// });
+var modelProto = ['user.js', 'device.js', 'emoticon.js'];
+modelProto.forEach(function(file) {
+    var model = sequelize.import(path.join(__dirname, file));
+    db[model.name] = model;
+});
 
 Object.keys(db).forEach(function(modelName){
     if ("associate" in db[modelName]){
