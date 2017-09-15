@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('profsystem', ['ngCookies', 'ngSanitize', 'ui.router', 'toastr', 'ngMaterial', 'ngMdIcons', 'md.data.table', 'ngFileUpload','ngSessionStorage', 'ckeditor']);
+    .module('emocat_web', ['ngCookies', 'ngSanitize', 'ui.router', 'toastr', 'ngFileUpload','ngSessionStorage', 'ckeditor']);
 
 })();

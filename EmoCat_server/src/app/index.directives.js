@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('profsystem');
+        .module('emocat_web');
 
 
 })();
