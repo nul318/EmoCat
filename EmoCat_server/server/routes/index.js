@@ -28,11 +28,10 @@ function auth(req, res, next){
 }
 
 router.post('/emoInfo', function (req, res, next){
-  console.log(req);
-  console.log(req);
+  console.log(req.params);
   models.emoticon.create({
-    happiness: req.body.happiness,
-    face_id : req.body.face_id,
+    happiness: req.params.happiness,
+    face_id : req.params.face_id,
   }).then(function(){
     res.send({result: true});
     console.log(device_id + "의 감정 상태가 추가되었습니다.");
@@ -40,6 +39,12 @@ router.post('/emoInfo', function (req, res, next){
     res.send({result: false});
   });
 })
+
+// router.get('/emoInfo', function(res, req){
+//     console.log(req.params);
+//     console.log("asdf");
+//     res.send({result: true})
+// });
 
 
 module.exports = router;
