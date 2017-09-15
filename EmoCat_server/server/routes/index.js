@@ -28,7 +28,7 @@ function auth(req, res, next){
 }
 
 router.get('/emoInfo', function (req, res, next){
-  console.log(req.params);
+  console.log(req);
   models.emoticon.create({
     happiness: req.params.happiness,
     face_id : req.params.face_id,
