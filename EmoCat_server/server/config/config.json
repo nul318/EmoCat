@@ -1,0 +1,48 @@
+{
+  "development": {
+    "title": "성균관대학교 정보통신대학 강의배정시스템",
+    "port": 3000,
+    "db": {
+      "host": "211.249.61.207",
+      "user": "scg",
+      "username": "scg",
+      "password": "@dnjrtlf(*&",
+      "database": "dev_profsystem",
+      "charset": "utf8",
+      "dialect": "mysql",
+      "logging": true,
+      "multipleStatements": true,
+      "timezone": "+09:00",
+      "upload_path": "webdata/uploads"
+    },
+    "email": {
+      "id": "ciwnyg0815@gmail.com"
+    },
+    "path": {
+      "view": "/../.tmp/serve",
+      "index": "/../src"
+    }
+  },
+  "production": {
+    "title": "성균관대학교 정보통신대학 강의배정시스템",
+    "port": 8090,
+    "db": {
+      "host": "localhost",
+      "user": "root",
+      "username": "root",
+      "password": "choiv9003530",
+      "database": "EmoCat",
+      "charset": "utf8",
+      "dialect": "mysql",
+      "logging": true,
+      "multipleStatements": true,
+      "timezone": "+09:00",
+      "upload_path": "webdata/uploads"
+    },
+    "path": {
+      "view": "/../dist",
+      "index": "/../dist",
+      "src": "/../src"
+    }
+  }
+}

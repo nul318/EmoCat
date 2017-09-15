@@ -1,0 +1,6 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/
+EmoCat_server/node_modules/
+EmoCat_server/public/
+EmoCat_server/bower_components/
