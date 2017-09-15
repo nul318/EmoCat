@@ -28,9 +28,8 @@ function auth(req, res, next){
 }
 
 router.post('/emoInfo', function (req, res, next){
-  console.log(req.body.device_id);
-  console.log(req.body.face_id);
-  console.log(req.body.happiness);
+  console.log(req.body);
+  console.log(req.params);
   models.emoticon.create({
     happiness: req.body.happiness,
     face_id : req.body.face_id,
