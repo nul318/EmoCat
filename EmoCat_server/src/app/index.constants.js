@@ -3,28 +3,7 @@
   'use strict';
 
   angular
-    .module('profsystem')
-    .constant('stype_str', [
-        '교양기초', '전공핵심', '전공일반', '실험실습', '전공(대학원)'
-    ])
-    .constant('lecture_type_str', [
-        '제한 없음', '일반', '강의저장', 'Blended'
-    ])
-    .constant('foreign_select_str', [
-        '', '국제어', '비국제어'
-    ])
-    .constant('isflipped_str', [
-        '', 'flip', 'non-flip'
-    ])
-    .constant('day_str', {
-      mon : '월',
-      tue : '화',
-      wed : '수',
-      thu : '목',
-      fri : '금',
-      sat : '토',
-      sun : '일'
-     })
+    .module('emocat_web')
     .constant('SHA256', function(s){
       var chrsz   = 8;
       var hexcase = 0;
@@ -152,6 +131,6 @@
 
       s = Utf8Encode(s);
       return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
-    })
+    });
 
 })();
