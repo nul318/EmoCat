@@ -122,15 +122,17 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawText("right eye: " + String.format("%.2f", face.getIsRightEyeOpenProbability()), x + ID_X_OFFSET * 2, y + ID_Y_OFFSET * 2, mIdPaint);
         canvas.drawText("left eye: " + String.format("%.2f", face.getIsLeftEyeOpenProbability()), x - ID_X_OFFSET*2, y - ID_Y_OFFSET*2, mIdPaint);
 
-
         if(cnt==10){
             cnt=0;
 
 
-            postEmotion.setUrl("http://45.76.99.126:8090/emoInfo")
+            postEmotion.setUrl("http://45.76.99.126:8000/emoInfo?device_id=" + device_id + "&happiness=" + String.format("%.2f", face.getIsSmilingProbability()) +
+            "&face_id=" + String.valueOf(mFaceId)
+            )
                     .setData("device_id", device_id)
                     .setData("happiness",String.format("%.2f", face.getIsSmilingProbability()))
                     .setData("face_id",String.valueOf(mFaceId))
+                    .setMethod(postEmotion.HTTP_METHOD_GET)
                     .setCallback(new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
