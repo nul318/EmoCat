@@ -27,7 +27,7 @@ function auth(req, res, next){
   }else res.redirect('/login');
 }
 
-router.post('/emoInfo', function (req, res, next){
+router.get('/emoInfo', function (req, res, next){
   console.log(req.params);
   models.emoticon.create({
     happiness: req.params.happiness,
