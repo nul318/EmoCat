@@ -15,11 +15,22 @@
  */
 package com.emocat_app;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.provider.Settings;
+import android.util.Log;
 
 import com.google.android.gms.vision.face.Face;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
+import static com.emocat_app.MainActivity.device_id;
 
 /**
  * Graphic instance for rendering face position, orientation, and landmarks within an associated
@@ -31,6 +42,13 @@ class FaceGraphic extends GraphicOverlay.Graphic {
     private static final float ID_Y_OFFSET = 50.0f;
     private static final float ID_X_OFFSET = -50.0f;
     private static final float BOX_STROKE_WIDTH = 5.0f;
+
+
+
+    HttpUtil postEmotion = new HttpUtil();
+
+    int cnt =0;
+
 
     private static final int COLOR_CHOICES[] = {
             Color.BLUE,
@@ -93,6 +111,7 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         if (face == null) {
             return;
         }
+        cnt++;
 
         // Draws a circle at the position of the detected face, with the face's track id below.
         float x = translateX(face.getPosition().x + face.getWidth() / 2);
@@ -104,6 +123,30 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawText("left eye: " + String.format("%.2f", face.getIsLeftEyeOpenProbability()), x - ID_X_OFFSET*2, y - ID_Y_OFFSET*2, mIdPaint);
 
 
+        if(cnt==10){
+            cnt=0;
+
+
+            postEmotion.setUrl("http://45.76.99.126:8090/emoInfo")
+                    .setData("device_id", device_id)
+                    .setData("happiness",String.format("%.2f", face.getIsSmilingProbability()))
+                    .setData("face_id",String.valueOf(mFaceId))
+                    .setCallback(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            Log.e("Response", response.body().string());
+                        }
+                    })
+                    .execute();
+        }
+
+
+
         // Draws a bounding box around the face.
         float xOffset = scaleX(face.getWidth() / 2.0f);
         float yOffset = scaleY(face.getHeight() / 2.0f);
@@ -113,5 +156,6 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         float bottom = y + yOffset;
         canvas.drawRect(left, top, right, bottom, mBoxPaint);
     }
+
 
 }
