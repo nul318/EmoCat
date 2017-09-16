@@ -143,9 +143,8 @@
                                     <div class="dropdown">
                                         <div class="form-group">
                                             <select id="cameraSel0" class="form-control">
-                                                <option>ID 001</option>
-                                                <option>ID 002</option>
-                                                <option>ID 003</option>
+                                                <option value="emocat">d00da5e9</option>
+                                                <option value="emocat2">652d17dfa1ea</option>
                                             </select>
                                         </div>
                                     </div>
@@ -157,9 +156,8 @@
                                     <div class="dropdown">
                                         <div class="form-group">
                                             <select id="cameraSel1" class="form-control">
-                                                <option>ID 001</option>
-                                                <option>ID 002</option>
-                                                <option>ID 003</option>
+                                                <option value="emocat">d00da5e9</option>
+                                                <option value="emocat2">652d17dfa1ea</option>
                                             </select>
                                         </div>
                                     </div>
@@ -216,6 +214,44 @@
     <script src="../dist/js/sb-admin-2.js"></script>
     <script src="../js/ocanvas-2.8.10.js"></script>
     <script type="text/javascript">
+
+      var dest = "http://45.76.99.126:8090";
+      // var dest = "http://127.0.0.1:3000";
+        $(document).ready(function($){
+          $.ajax({
+            url: dest + '/happiness?device_id=' + 'emocat',
+            crossDomain: true,
+            type: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function(data){
+              ChageColorCam('emocat', data.happiness);
+            }
+          });
+
+          $.ajax({
+            url: dest + '/happiness?device_id=' + 'emocat2',
+            crossDomain: true,
+            type: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function(data){
+              ChageColorCam('emocat2', data.happiness);
+            }
+          });
+
+          setInterval(function(){
+            $.getJSON(dest + '/happiness?device_id=' + 'emocat', function(result){
+              console.log(result.happiness);
+              ChageColorCam('emocat', result.happiness);
+            })
+            $.getJSON(dest + '/happiness?device_id=' + 'emocat2', function(result){
+              console.log(result.happiness);
+              ChageColorCam('emocat2', result.happiness);
+            })
+          }, 1000);
+        });
+
         var colorList = ["#E6D2C0", "#D5B191", "#C59269", "#B77844", "#A96026", "#906139", "#745B44", "#927350", "#C38743", "#F7931D", "#F9A64A"];
         var beforeHappy = 0;
         var cameraNmIndex = 0;
@@ -253,10 +289,10 @@
                 cameras[1].fill = happyValue;
             }
         }
-        var test_deviceId = 'ID 001';
+        var test_deviceId = 'emocat';
         var test_happy = 0;
         canvas.setLoop(function () {
-            ChageColorCam(test_deviceId, test_happy);
+//            ChageColorCam(test_deviceId, happy);
             if (rotateOn && rotating){
                 rotatingTarget.rotation++;
             }
@@ -268,7 +304,7 @@
                 test_happy = 0;
         }
 
-        setInterval('Testing()', 1000);
+//        setInterval('Testing()', 1000);
 
         function MakeCam() {
             if (camerasIndex < 2) {
