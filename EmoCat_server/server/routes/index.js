@@ -65,8 +65,10 @@ router.get('/happiness', cors(corsOptions), function(req, res){
       },
       order: [['updatedAt', 'DESC']]
     }).then(function(latest){
-      // res.set('Access-Control-Allow-Origin', '*');
-      // res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.set('Access-Control-Allow-Origin', '*');
+      res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization');
+      res.set('Access-Control-Max-Age', 3600);
+
       res.send(latest);
     });
   });
