@@ -55,11 +55,11 @@
         table.dragAndDrop(dragOptions)
 
         var colorNum = 0;
-
+        var colorVal = 0;
         canvas.setLoop(function () {
-            colorNum++;
-            //if (colorNum)
-            camera.fill = "#05";
+            
+            camera.fill = "#300";
+            camera.rotate--;
         });
 
         canvas.timeline.start();
