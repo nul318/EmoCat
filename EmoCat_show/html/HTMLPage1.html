@@ -3,25 +3,47 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>test</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <title>test</title>    
 
 </head>
 <body>
-    <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-1">
-            <canvas id="canvas" width="500" height="500" />
-
+    <div>
+        <canvas id="canvas" width="500" height="500" style="position: absolute; left: 50px; background-color: silver;"></canvas>
+        <div style="width: 300px; height: 500px; position: absolute; left: 600px; background-color: silver;">
+            <div id="cameraSet0" style="width: 300px; height: 50px; position: absolute; top: 0px; display: none;">
+                <div style="position: absolute; left: 20px; top: 15px">Camera 0</div>
+                <select id="cameraSel0" style="width: 150px; height: 25px; position: absolute; left: 100px; top: 14px;">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                </select>
+            </div>
+            <div id="cameraSet1" style="width: 300px; height: 50px; position: absolute; top: 60px; display: none;">
+                <div style="position: absolute; left: 20px; top: 15px">Camera 1</div>
+                <select id="cameraSel1" style="width: 150px; height: 25px; position: absolute; left: 100px; top: 14px;">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                </select>
+            </div>
+            <div id="cameraSet2" style="width: 300px; height: 50px; position: absolute; top: 120px; display: none;">
+                <div style="position: absolute; left: 20px; top: 15px">Camera 2</div>
+                <select id="cameraSel2" style="width: 150px; height: 25px; position: absolute; left: 100px; top: 14px;">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                </select>
+            </div>
         </div>
-        
-        <div class="col-lg-5"></div>
     </div>
     
 
 
     <script src="js/ocanvas-2.8.10.js"></script>
     <script type="text/javascript">
+        var cameraNmIndex = 0;
+        var cameraNmArr = [];
+
         var canvas = oCanvas.create({
             canvas: "#canvas"
         });
@@ -80,10 +102,9 @@
 
         var dragOptions = { changeZindex: true };
 
-        //camera.dragAndDrop(dragOptions);
-
         var colorNum = 0;
         var colorVal = 0;
+
         canvas.setLoop(function () {
             colorNum += 0.1;
             
@@ -100,46 +121,48 @@
             //camera.fill = colorVal;
 
             if (rotateOn && rotating){
-                rotatingTarget.rotation--;
+                rotatingTarget.rotation++;
             }
         });
 
         buttonCamera.bind("click tap", function () {
-            cameras[camerasIndex] = canvas.display.arc({
-                x: canvas.width / 2,
-                y: canvas.width / 2,
-                radius: 250,
-                start: 0,
-                end: 30,
-                fill: "#079",
-                pieSection: true
-            });
+            if (camerasIndex < 3) {
+                document.getElementById("cameraSet" + camerasIndex).style.display = 'block';
 
-            cameras[camerasIndex].bind("mousedown touchstart", function () {
-                if (!rotateOn && rotating) {
-                    rotateOn = true;
-                    rotatingTarget = this;
-                    rotatingTarget.dragAndDrop(false);
-                }
-            });
-            cameras[camerasIndex].bind("mouseup touchend", function () {
-                if (rotateOn && rotating) {
-                    rotateOn = false;
-                    rotatingTarget.dragAndDrop(dragOptions);
-                    rotatingTarget = null;
-                }
+                cameras[camerasIndex] = canvas.display.arc({
+                    x: canvas.width / 2,
+                    y: canvas.width / 2,
+                    radius: 250,
+                    start: 0,
+                    end: 30,
+                    fill: "#079",
+                    pieSection: true
+                });
 
-            });
-            cameras[camerasIndex].bind("mouseleave touchleave", function () {
-                if (rotateOn && rotating) {
-                    rotateOn = false;
-                    rotatingTarget.dragAndDrop(dragOptions);
-                    rotatingTarget = null;
-                }
-
-            });
-            canvas.addChild(cameras[camerasIndex]);
-            cameras[camerasIndex++].dragAndDrop(dragOptions);
+                cameras[camerasIndex].bind("mousedown touchstart", function () {
+                    if (!rotateOn && rotating) {
+                        rotateOn = true;
+                        rotatingTarget = this;
+                        rotatingTarget.dragAndDrop(false);
+                    }
+                });
+                cameras[camerasIndex].bind("mouseup touchend", function () {
+                    if (rotateOn && rotating) {
+                        rotateOn = false;
+                        rotatingTarget.dragAndDrop(dragOptions);
+                        rotatingTarget = null;
+                    }
+                });
+                cameras[camerasIndex].bind("mouseleave touchleave", function () {
+                    if (rotateOn && rotating) {
+                        rotateOn = false;
+                        rotatingTarget.dragAndDrop(dragOptions);
+                        rotatingTarget = null;
+                    }
+                });
+                canvas.addChild(cameras[camerasIndex]);
+                cameras[camerasIndex++].dragAndDrop(dragOptions);
+            }
         });
         buttonTable.bind("click tap", function () {
             tables[tablesIndex] = canvas.display.rectangle({
