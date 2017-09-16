@@ -146,9 +146,6 @@ class FaceGraphic extends GraphicOverlay.Graphic {
             Log.e("happiness", String.valueOf(face.getIsSmilingProbability()));
             Log.e("happinessTotal", String.valueOf(happinessTotal));
 
-            happinessAvg=0;
-            faceCnt=0;
-            happinessTotal=0;
 
 
 
@@ -186,6 +183,9 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawRect(left, top, right, bottom, mBoxPaint);
 
 
+        happinessAvg=0;
+        faceCnt=0;
+        happinessTotal=0;
 
 
 

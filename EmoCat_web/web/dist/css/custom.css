@@ -96,6 +96,7 @@
 }
 
 .right-bar {
+    padding : 0;
      width: 25%;
 }
 .device ul li{
@@ -152,4 +153,8 @@
 .EmoHome2 .navbar-default{
     background-color: transparent;
     border: none;
+}
+.palette-img {
+    background-image: url('../../vendor/bootstrap/img/palette.png');
+    background-color: black;
 }
