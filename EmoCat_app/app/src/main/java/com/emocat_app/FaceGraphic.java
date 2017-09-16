@@ -122,13 +122,13 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawText("right eye: " + String.format("%.2f", face.getIsRightEyeOpenProbability()), x + ID_X_OFFSET * 2, y + ID_Y_OFFSET * 2, mIdPaint);
         canvas.drawText("left eye: " + String.format("%.2f", face.getIsLeftEyeOpenProbability()), x - ID_X_OFFSET*2, y - ID_Y_OFFSET*2, mIdPaint);
 
-        if(cnt==5){
+        if(cnt==50){
             cnt=0;
             if(face.getIsSmilingProbability()<0){
                 return;
             }
 
-            postEmotion.setUrl("http://45.76.99.126:8000/emoInfo?device_id=" + device_id + "&happiness=" + String.format("%.2f", face.getIsSmilingProbability()) +
+            postEmotion.setUrl("http://45.76.99.126:8090/emoInfo?device_id=" + device_id + "&happiness=" + String.format("%.2f", face.getIsSmilingProbability()) +
             "&face_id=" + String.valueOf(mFaceId)
             )
                     .setData("device_id", device_id)
