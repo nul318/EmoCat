@@ -1,7 +1,7 @@
 
 var recentId = 1;
 // var dest = "http://45.76.99.126:8090";
-var dest = "http://localhost:8090";
+var dest = "http://127.0.0.1:8090";
 
 $(document).ready(function($){
   $.ajaxSetup({ cache: false });
@@ -40,7 +40,7 @@ function EmoticonChart(){
 }
 
 function Update(mainGraph){
-  $.getJSON(dest + '/info/device/emocat/' + recentId, function(result){
+  $.getJSON(dest + '/info/device/emocat/1', function(result){
     mainGraph.setData(result)
   });
 }
