@@ -28,13 +28,20 @@
 	============================================= -->
 <title>EmoCat Developers</title>
 
+
+<style type="text/css">
+    html, body { height:100%; width:100%; overflow:hidden }
+    .h-div {height:96%; border:3px #f99 solid}
+    </style>
+
+
 </head>
 
-<body class="stretched">
+<body class="stretched" >
 
 	<!-- Document Wrapper
 	============================================= -->
-	<div id="wrapper" class="clearfix">
+	<div id="wrapper" class="clearfix" style="height:100%;">
 
 		<!-- Header
 		============================================= -->
@@ -64,9 +71,9 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a href="index.html"><div>API 소개</div></a></li>
+							<li ><a href="index.html"><div>API 소개</div></a></li>
 							<li><a href="#"><div>이용안내</div></a></li>
-							<li><a href="#"><div>내 애플리케이션</div></a></li>
+							<li class="current"><a href="#"><div>내 애플리케이션</div></a></li>
 							<li><a href="#"><div>애플리케이션 등록</div></a></li>
 
 
@@ -85,84 +92,76 @@
 					
 					</nav>
 					<!-- #primary-menu end -->
-
 				</div>
-
 			</div>
-
 		</header>
-		<!-- #header end -->
+        
+        <div class="row" style="height:100%; width:100%;display:inline-block;">
+            <div class="col-lg-2" style="height: 100%; background-color: #F3F6F7;">
+
+            
+                <select style="width:160px;margin-top:130px;margin-left:30px;" class="form-control">
+                    <option value="volvo">내 애플리케이션</option>
+                    <option value="saab">EmoCat</option>
+                    
+                    
+                </select>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-7">
+                
+                <!-- Content
+                 ============================================= -->
+                <section id="content">
+                    
+                    <div class="content-wrap">
+                        <div id="page-wrapper">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header dropdown">My App</h1>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <table class="table table-bordered" style="width: 100%; height: 200px;"  class="tg">
+                        <thead>
+                        <tr>
+                            <th style="width:40%; text-align:center;">앱 이름</th>
+                            <th style="width:40%; text-align:center;" colspan="2">인증 키</th>
+                            <th style="width:20%; text-align:center;">앱 등록 일자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="width: 40%;vertical-align: middle;text-align:center;"rowspan="3">EmoCat</td>
+                            <td style="width: 13%;text-align:center;">App Key</td>
+                            <td style="width: 26%;text-align:center;">ad198215</td>
+                            <td style="width: 20%;text-align:center;vertical-align: middle;" rowspan="3"> 17.09.17 </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">Device 1</td>
+                            <td style="text-align:center;">d00da5e9</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center;">Device 2</td>
+                            <td style="text-align:center;">652d17dfa1ea</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                </section>
+                <!-- #content end -->
+            </div>
+            <div class="col-lg-2" >
+                
+            </div>
+
+        </div>
         
 
-				<!-- Content
-		============================================= -->
-		<section id="content">
-
-			<div class="content-wrap">
-			</div>
-
-		</section>
-		<!-- #content end -->
-
-		<!-- Footer
-		============================================= -->
-		<footer id="footer" class="dark">
-
-
-			<!-- Copyrights
-			============================================= -->
-			<div id="copyrights">
-
-				<div class="container clearfix">
-
-					<div class="col_half">
-						Copyrights &copy; 2017 All Rights Reserved by EmoCat.<br>
-					</div>
-
-					<div class="col_half col_last tright">
-						<div class="fright clearfix">
-							<a href="#"
-								class="social-icon si-small si-borderless si-facebook"> <i
-								class="icon-facebook"></i> <i class="icon-facebook"></i>
-							</a> <a href="#"
-								class="social-icon si-small si-borderless si-twitter"> <i
-								class="icon-twitter"></i> <i class="icon-twitter"></i>
-							</a> <a href="#"
-								class="social-icon si-small si-borderless si-gplus"> <i
-								class="icon-gplus"></i> <i class="icon-gplus"></i>
-							</a> <a href="#"
-								class="social-icon si-small si-borderless si-pinterest"> <i
-								class="icon-pinterest"></i> <i class="icon-pinterest"></i>
-							</a> <a href="#"
-								class="social-icon si-small si-borderless si-vimeo"> <i
-								class="icon-vimeo"></i> <i class="icon-vimeo"></i>
-							</a> <a href="#"
-								class="social-icon si-small si-borderless si-github"> <i
-								class="icon-github"></i> <i class="icon-github"></i>
-							</a> <a href="#"
-								class="social-icon si-small si-borderless si-yahoo"> <i
-								class="icon-yahoo"></i> <i class="icon-yahoo"></i>
-							</a> <a href="#"
-								class="social-icon si-small si-borderless si-linkedin"> <i
-								class="icon-linkedin"></i> <i class="icon-linkedin"></i>
-							</a>
-						</div>
-
-						<div class="clear"></div>
-
-						<i class="icon-envelope2"></i> nul010@naver.com <span
-							class="middot">&middot;</span> <i class="icon-headphones"></i>
-						010.8308.4088 <span class="middot">&middot;</span> <i
-							class="icon-skype2"></i>
-					</div>
-
-				</div>
-
-			</div>
-			<!-- #copyrights end -->
-
-		</footer>
-		<!-- #footer end -->
 
 	</div>
 	<!-- #wrapper end -->
