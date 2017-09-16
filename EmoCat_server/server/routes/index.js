@@ -44,14 +44,23 @@ router.get('/info/user/:uid/:id', function(req, res){
   var recentData = {};
 
   models.emoticon.findAll({
-    include: { model: models.device, include: [models.user]},
+    include: { model: models.device, include: { model: models.user, where: { uid: req.params.uid }}, required: true},
+    where:
+      {id: { gt: req.params.id }}
   }).then(function(data){
     res.send(data);
   })
 });
 
-router.get('/info/device/:device_id/id', function(req, res){
-
+router.get('/info/device/:device_id/:id', function(req, res){
+  models.emoticon.findAll({
+    include: {model: models.device, required: true, where: { deviceId: req.params.device_id }},
+    where: {
+      id: { gt: req.params.id }
+    }
+  }).then(function(data){
+    res.send(data);
+  });
 });
 
 
