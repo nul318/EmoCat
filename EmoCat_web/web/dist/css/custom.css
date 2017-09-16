@@ -113,7 +113,6 @@
 .right-bar {
     padding : 0;
      width: 25%;
-    font-family: Hevel-Roman;
 }
 .device ul li{
   list-style: none;
@@ -174,8 +173,8 @@
     margin: 0.5em;
 }
 
-.custom .right-bar p{
-    font-size: 1.2em;
+text[text-anchor="middle"]{
+    display:none
 }
 
 /**
