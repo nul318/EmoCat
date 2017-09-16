@@ -19,13 +19,18 @@ function EmoticonChart(){
     data: {},
     dataType: 'json',
     success: function(data){
-      mainGraph = Morris.Line({
+      mainGraph = Morris.Area({
+        verticalGrid: true,
+        fillOpacity: 0.3,
+        pointFillColors: ['#919899'],
+        pointStrokeColors: ['#C8D0D2'],
+        lineColors: ['#919899'],
         element: 'morris-area-chart',
         data: data,
         xkey: 'updatedAt',
         xLabelAngle: 45,
         // hideHover: 'auto',
-        pointSize: 0,
+        // pointSize: 0,
         ykeys: ['happiness'],
         xLabelMargin: 1,
         resize: 'true',
