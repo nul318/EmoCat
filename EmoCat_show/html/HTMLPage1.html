@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>test</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-1">
+            <canvas id="canvas" width="500" height="500" />
+
+        </div>
+        
+        <div class="col-lg-5"></div>
+    </div>
+    
+
+
+    <script src="js/ocanvas-2.8.10.js"></script>
+    <script type="text/javascript">
+        var canvas = oCanvas.create({
+            canvas: "#canvas"
+        });
+
+        var table = canvas.display.rectangle({
+            x: canvas.width / 2,
+            y: canvas.width / 5,
+            origin: { x: "center", y: "center" },
+            width: 300,
+            height: 40,
+            stroke: "2px #079",
+            join: "round"
+        });
+
+        canvas.addChild(table);
+
+        var dragOptions = { changeZindex: true };
+
+        table.dragAndDrop(dragOptions)
+
+        canvas.setLoop(function () {
+            table.rotation++;
+        });
+
+        button.bind("click tap", function () {
+            if (canvas.timeline.running) {
+                canvas.timeline.stop();
+            } else {
+                canvas.timeline.start();
+            }
+        });
+    </script>
+
+</body>
+</html>
