@@ -69,6 +69,57 @@
 }
 
 .title {
-    height: 5em;
-    
+    width: 30em;
+    margin-bottom: 0.6em;
+}
+.text{
+    width: 20em;
+    margin-bottom: 2em;
+    color: dimgrey;
+}
+.date{
+    width: 10em;
+    margin-bottom: 4em;
+}
+
+/**custom**/
+.data-panel {
+    margin-top: 3em;
+    padding: 2em;
+
+    background-color: #e7e7e7;
+
+}
+.data-container{
+    width: 100%;
+    display: inline-block;
+}
+
+.right-bar {
+     width: 25%;
+}
+.device ul li{
+  list-style: none;
+}
+@media (min-width: 768px) {
+    .data-panel{
+        width: 45em;
+        height : 35em;
+    }
+}
+
+@media (max-width: 768px) {
+    .data-panel {
+        width: 35em;
+        height: 25em;
+    }
+}
+
+.right-bar{
+    padding-top: 8em;
+}
+
+.palette{
+    padding-top: 5em;
+    padding-left: 3em;
 }
