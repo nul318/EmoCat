@@ -29,6 +29,7 @@ function auth(req, res, next){
 }
 
 router.post('/emoInfo', function (req, res, next){
+  console.log(req.query.device_id);
   models.device.findOne({
     where: {
       deviceId: req.query.device_id
