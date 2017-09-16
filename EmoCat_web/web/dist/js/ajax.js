@@ -24,11 +24,11 @@ function EmoticonChart(){
         data: data,
         xkey: 'updatedAt',
         xLabelAngle: 45,
-        hideHover: 'auto',
+        // hideHover: 'auto',
         ykeys: ['happiness'],
-        pointSize: 0,
         xLabelMargin: 1,
-        resize: 'true'
+        resize: 'true',
+        labels: ['happiness', 'Time']
       });
       console.log(data);
       // console.log(data.length);
