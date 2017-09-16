@@ -1,6 +1,6 @@
-// var dest = "http://45.76.99.126:8090";
+var dest = "http://45.76.99.126:8090";
 var recentId = 1;
-var dest = "http://localhost:8090";
+// var dest = "http://localhost:8090";
 
 $(document).ready(function($){
   $.ajaxSetup({ cache: false });
@@ -21,11 +21,15 @@ function EmoticonChart(){
         element: 'morris-area-chart',
         data: data,
         xkey: 'updatedAt',
+        xLabelAngle: 45,
         ykeys: ['happiness'],
-        hideHover: 'auto',
+        pointSize: 0,
+        xLabelMargin: 1,
         resize: 'true'
       });
       console.log(data);
+      // console.log(data.length);
+      // recentId = data[data.length-1].id;
     },
     error: function(){}
     }
@@ -35,6 +39,10 @@ function EmoticonChart(){
 
 function Update(mainGraph){
   $.getJSON(dest + '/info/device/emocat/' + recentId, function(result){
+    console.log(mainGraph);
+    result.forEach(function(item, index, object){
+      if(item.updatedAt < Date.now().setHours(Date.now().getHour()-1)) object.splice(index,1);
+    });
     if(result.result != false) mainGraph.setData(result)
   });
 }
