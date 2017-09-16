@@ -67,7 +67,8 @@ router.get('/info/device/:device_id/:id', function(req, res){
       id: { gt: req.params.id }
     }
   }).then(function(data){
-    res.send(data);
+    if(data) res.send(data);
+    else res.send({result: false});
   });
 });
 
