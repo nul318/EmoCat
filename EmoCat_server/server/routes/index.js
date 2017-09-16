@@ -45,7 +45,23 @@ router.post('/emoInfo', function (req, res, next){
       res.send({result: false});
     });
   })
+})
 
+router.get('/happiness', function(req, res){
+  models.device.findOne({
+    where: {
+      deviceId: req.query.device_id
+    }
+  }).then(function(data){
+    models.emoticon.findOne({
+      where: {
+        device_id: data.dataValues.id
+      },
+      order: [['updatedAt', 'DESC']]
+    }).then(function(latest){
+      res.send(latest);
+    });
+  });
 })
 
 router.get('/info/user/:uid/:id', function(req, res){
@@ -65,7 +81,9 @@ router.get('/info/device/:device_id/:id', function(req, res){
     include: {model: models.device, required: true, where: { deviceId: req.params.device_id }},
     where: {
       id: { gt: req.params.id }
-    }
+    },
+    order: [['id', 'DESC']],
+    limit: 20
   }).then(function(data){
     if(data) res.send(data);
     else res.send({result: false});
