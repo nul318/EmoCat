@@ -9,6 +9,12 @@ var mkdirp = require('mkdirp');
 var multer = require('multer');
 var async = require('async');
 var config = require('../config/config.json')[process.env.NODE_ENV || "development"];
+var cors = require('cors')
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 router.use(session({
   key: 'scgsessionkey',
@@ -47,7 +53,7 @@ router.post('/emoInfo', function (req, res, next){
   })
 })
 
-router.get('/happiness', function(req, res){
+router.get('/happiness', cors(corsOptions), function(req, res){
   models.device.findOne({
     where: {
       deviceId: req.query.device_id
@@ -59,8 +65,8 @@ router.get('/happiness', function(req, res){
       },
       order: [['updatedAt', 'DESC']]
     }).then(function(latest){
-      res.set('Access-Control-Allow-Origin', '*');
-      res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      // res.set('Access-Control-Allow-Origin', '*');
+      // res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       res.send(latest);
     });
   });
