@@ -214,9 +214,13 @@
       var dest = "http://45.76.99.126:8090";
       // var dest = "http://127.0.0.1:3000";
         $(document).ready(function($){
+          $.ajaxSetup({ cache: false });
           $.ajax({
             url: dest + '/happiness?device_id=' + 'emocat',
             crossDomain: true,
+            beforeSend: function(xhr){
+              xhr.withCredentials = true;
+            },
             type: 'GET',
             data: {},
             dataType: 'json',
