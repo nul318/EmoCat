@@ -85,6 +85,8 @@ router.get('/info/device/:device_id/:id', function(req, res){
     order: [['id', 'DESC']],
     limit: 20
   }).then(function(data){
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     if(data) res.send(data);
     else res.send({result: false});
   });
