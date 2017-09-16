@@ -60,11 +60,11 @@ app.use('/', routes);
 app.use('/webdata', express.static(path.join(__dirname, "/../webdata")));
 
 //angular route html5Mode support
-app.use('/*', function(req, res) {
-    res.sendFile('index.html', {
-        root: path.join(__dirname, process.env.NODE_ENV === "production" ? viewPath.index : viewPath.view)
-    })
-})
+// app.use('/*', function(req, res) {
+//     res.sendFile('index.html', {
+//         root: path.join(__dirname, process.env.NODE_ENV === "production" ? viewPath.index : viewPath.view)
+//     })
+// })
 
 
 // development error handler

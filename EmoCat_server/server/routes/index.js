@@ -7,6 +7,7 @@ var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
 var multer = require('multer');
+var async = require('async');
 var config = require('../config/config.json')[process.env.NODE_ENV || "development"];
 
 router.use(session({
@@ -27,24 +28,44 @@ function auth(req, res, next){
   }else res.redirect('/login');
 }
 
-router.get('/emoInfo', function (req, res, next){
-  console.log(req);
+router.post('/emoInfo', function (req, res, next){
   models.emoticon.create({
-    happiness: req.params.happiness,
-    face_id : req.params.face_id,
+    happiness: req.query.happiness,
+    face_id : req.query.face_id,
   }).then(function(){
     res.send({result: true});
-    console.log(device_id + "의 감정 상태가 추가되었습니다.");
+    console.log(req.query.device_id + "의 감정 상태가 추가되었습니다.");
   }).catch(function(){
     res.send({result: false});
   });
 })
 
-// router.get('/emoInfo', function(res, req){
-//     console.log(req.params);
-//     console.log("asdf");
-//     res.send({result: true})
-// });
+router.get('/info/user/:uid/:id', function(req, res){
+  var recentData = {};
+
+  models.emoticon.findAll({
+    include: { model: models.device, include: [models.user]},
+  }).then(function(data){
+    res.send(data);
+  })
+});
+
+router.get('/info/device/:device_id/id', function(req, res){
+
+});
 
 
 module.exports = router;
+
+// router.get('/info/user/:uid/:id', function(req, res){
+//   var recentData = {};
+//
+//   models.emoticon.findAll({
+//     include: { model: models.device, include: {model: models.user, where: { uid: uid }}},
+//     where: {
+//       id: {gt: id}
+//     }
+//   }).then(function(data){
+//     res.send(data);
+//   })
+// });
