@@ -29,15 +29,23 @@ function auth(req, res, next){
 }
 
 router.post('/emoInfo', function (req, res, next){
-  models.emoticon.create({
-    happiness: req.query.happiness,
-    face_id : req.query.face_id,
-  }).then(function(){
-    res.send({result: true});
-    console.log(req.query.device_id + "의 감정 상태가 추가되었습니다.");
-  }).catch(function(){
-    res.send({result: false});
-  });
+  models.device.findOne({
+    where: {
+      deviceId: req.query.device_id
+    }
+  }).then(function(data){
+    models.emoticon.create({
+      happiness: req.query.happiness,
+      face_id : req.query.face_id,
+      device_id: data.dataValues.id
+    }).then(function(){
+      res.send({result: true});
+      console.log(req.query.device_id + "의 감정 상태가 추가되었습니다.");
+    }).catch(function(){
+      res.send({result: false});
+    });
+  })
+
 })
 
 router.get('/info/user/:uid/:id', function(req, res){
@@ -59,7 +67,8 @@ router.get('/info/device/:device_id/:id', function(req, res){
       id: { gt: req.params.id }
     }
   }).then(function(data){
-    res.send(data);
+    if(data) res.send(data);
+    else res.send({result: false});
   });
 });
 

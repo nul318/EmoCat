@@ -71,7 +71,8 @@ public final class MainActivity extends AppCompatActivity {
         handler = new Handler();
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
-        device_id = Settings.Secure.getString(con.getContentResolver(), Settings.Secure.ANDROID_ID);
+//        device_id = Settings.Secure.getString(con.getContentResolver(), Settings.Secure.ANDROID_ID);
+        device_id = "emocat";
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
