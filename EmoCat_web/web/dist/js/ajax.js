@@ -35,8 +35,7 @@ function EmoticonChart(){
         ykeys: ['happiness'],
         xLabelMargin: 1,
         resize: 'true',
-        labels: ['happiness', 'time'],
-        axes: 'x'
+        labels: ['happiness', 'time']
       });
       console.log(data);
       // console.log(data.length);
@@ -62,9 +61,9 @@ function EmoticonChart2(){
         mainGraph = Morris.Area({
           verticalGrid: true,
           fillOpacity: 0.3,
-          pointFillColors: ['#919899'],
+          pointFillColors: ['#1167BD'],
           pointStrokeColors: ['#C8D0D2'],
-          lineColors: ['#919899'],
+          lineColors: ['#2290FC'],
           element: 'morris-area-chart2',
           data: data,
           xkey: 'updatedAt',
@@ -74,8 +73,7 @@ function EmoticonChart2(){
           ykeys: ['happiness'],
           xLabelMargin: 1,
           resize: 'true',
-          labels: ['happiness', 'time'],
-          axes: 'x'
+          labels: ['happiness', 'time']
         });
         console.log(data);
         // console.log(data.length);
