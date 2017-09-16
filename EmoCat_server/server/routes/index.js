@@ -34,6 +34,7 @@ router.post('/emoInfo', function (req, res, next){
       deviceId: req.query.device_id
     }
   }).then(function(data){
+    console.log(data);
     models.emoticon.create({
       happiness: req.query.happiness,
       face_id : req.query.face_id,
