@@ -1,7 +1,3 @@
-#정보통신대학 강의배정시스템
-####PM : 최원영
-#####조기윤 최서연 박은찬 한상미 김종헌 김대진 안정혁
-#####실행 : gulp express
-
-완전 SPA 방식으로 가고자 합니다.
-뷰 페이지 이동하는 라우팅은 전부 angular stete로 하겠습니다.
+#EMOCAT OpenSource
+#### Based on Mobile Vision
+#### 
