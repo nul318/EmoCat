@@ -1,7 +1,11 @@
 .navbar-brand {
     margin-top: 0.2em;
     font-size: 2em;
+    font-family: "Hevel-Roman";
+
+
 }
+
 
 .navbar-top-links{
     margin-top : 0.9em;
@@ -27,11 +31,16 @@
     float: left;
     margin-right: 1.5em;
 }
+
 .account-btn .btn{
     width: 8em;
     border-radius: 4.5em;
     border-width: 0;
+    font-family: "Hevel-Roman";
+    background-color: #fafafa;
 }
+
+
 
 .accout {
     width: 100%;
@@ -39,6 +48,7 @@
 .account-btn {
     float: right;
     margin-right: 3em;
+
 }
 
 .nav .navbar-top-links .navbar-right{
@@ -47,8 +57,8 @@
 
 .sidebar-nav{
     background-color: white;
-
-
+    font-family: "Hevel-light";
+    letter-spacing: 0.18em;
 }
 
 .sidebar ul li {
@@ -103,6 +113,7 @@
 .right-bar {
     padding : 0;
      width: 25%;
+    font-family: Hevel-Roman;
 }
 .device ul li{
   list-style: none;
@@ -167,4 +178,16 @@
 
 .custom .right-bar p{
     font-size: 1.2em;
+}
+
+/**
+font
+ */
+@font-face {
+    font-family: 'Hevel-Roman';
+    src: url('../../../web/vendor/bootstrap/fonts/HelveticaNeue-Roman.otf') format('otf');
+}
+@font-face {
+    font-family: 'Hevel-light';
+    src: url('../../../web/vendor/bootstrap/fonts/HelveticaNeue-Thin.otf') format('otf');
 }
