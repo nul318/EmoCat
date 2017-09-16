@@ -13,6 +13,7 @@ function EmoticonChart(){
   var mainGraph;
   $.ajax({
     url: dest + '/info/device/emocat/1',
+    crossDomain: true,
     cache: false,
     type: 'GET',
     data: {},
