@@ -26,42 +26,166 @@
             canvas: "#canvas"
         });
 
-        var camera = canvas.display.arc({
-            x: canvas.width / 2,
-            y: canvas.width / 2,
-            radius: 250,
+        var tablesIndex = 0;
+        var tables = [];
+
+        var camerasIndex = 0;
+        var cameras = [];
+
+        var rotateOn = false;
+        var rotating = false;
+        var rotatingTarget = null;
+
+        var buttonCamera = canvas.display.arc({
+            x: (canvas.width / 10) * 1 - 10,
+            y: canvas.width - 50 - 5,
+            radius: 20,
             start: 0,
             end: 30,
             fill: "#079",
             pieSection: true
         });
-
-        var table = canvas.display.rectangle({
-            x: canvas.width / 2,
-            y: canvas.width / 2,
+        var buttonTable = canvas.display.rectangle({
+            x: (canvas.width / 10) * 2,
+            y: canvas.width - 50,
             origin: { x: "center", y: "center" },
-            width: 300,
-            height: 40,
+            width: 30,
+            height: 10  ,
             stroke: "2px #079",
             join: "round"
         });
+        var buttonRotate = canvas.display.rectangle({
+            x: (canvas.width / 10) * 3,
+            y: canvas.width - 50,
+            origin: { x: "center", y: "center" },
+            width: 50,
+            height: 20,
+            stroke: "2px #079",
+            join: "round"
+        });
+        var buttonRText = canvas.display.text({
+            x: 0,
+            y: 0,
+            origin: { x: "center", y: "center" },
+            align: "center",
+            font: "bold 5px sans-serif",
+            text: "Rotation",
+            fill: "#059"
+        });
+        buttonRotate.addChild(buttonRText);
 
-        canvas.addChild(camera);
-        canvas.addChild(table);
+        canvas.addChild(buttonTable);
+        canvas.addChild(buttonRotate);
+        canvas.addChild(buttonCamera);
 
         var dragOptions = { changeZindex: true };
 
-        camera.dragAndDrop(dragOptions);
-        table.dragAndDrop(dragOptions)
+        //camera.dragAndDrop(dragOptions);
 
         var colorNum = 0;
         var colorVal = 0;
         canvas.setLoop(function () {
+            colorNum += 0.1;
             
-            camera.fill = "#300";
-            camera.rotate--;
+            if (colorNum < 10) {
+                colorVal = "#" + "00" + Math.round(colorNum);
+            }
+            else if (colorNum < 100) {
+                colorVal = "#" + "0" + Math.round(colorNum);
+            }
+            else {
+                colorNum = 0;
+                colorVal = "#000";
+            }
+            //camera.fill = colorVal;
+
+            if (rotateOn && rotating){
+                rotatingTarget.rotation--;
+            }
         });
 
+        buttonCamera.bind("click tap", function () {
+            cameras[camerasIndex] = canvas.display.arc({
+                x: canvas.width / 2,
+                y: canvas.width / 2,
+                radius: 250,
+                start: 0,
+                end: 30,
+                fill: "#079",
+                pieSection: true
+            });
+
+            cameras[camerasIndex].bind("mousedown touchstart", function () {
+                if (!rotateOn && rotating) {
+                    rotateOn = true;
+                    rotatingTarget = this;
+                    rotatingTarget.dragAndDrop(false);
+                }
+            });
+            cameras[camerasIndex].bind("mouseup touchend", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            cameras[camerasIndex].bind("mouseleave touchleave", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            canvas.addChild(cameras[camerasIndex]);
+            cameras[camerasIndex++].dragAndDrop(dragOptions);
+        });
+        buttonTable.bind("click tap", function () {
+            tables[tablesIndex] = canvas.display.rectangle({
+                x: canvas.width / 2,
+                y: canvas.width / 2,
+                origin: { x: "center", y: "center" },
+                width: 300,
+                height: 40,
+                stroke: "2px #079",
+                join: "round"
+            });
+
+            tables[tablesIndex].bind("mousedown touchstart", function () {
+                if (!rotateOn && rotating) {
+                    rotateOn = true;
+                    rotatingTarget = this;
+                    rotatingTarget.dragAndDrop(false);
+                }
+            });
+            tables[tablesIndex].bind("mouseup touchend", function () {
+                if ( rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+                
+            });
+            tables[tablesIndex].bind("mouseleave touchleave", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            canvas.addChild(tables[tablesIndex]);
+            tables[tablesIndex++].dragAndDrop(dragOptions);
+        });
+        buttonRotate.bind("click tap", function () {
+            if (!rotating)
+                this.fill = "#0A0";
+            else
+                this.fill = "#fff";
+
+            rotating = !rotating;
+        });
         canvas.timeline.start();
     </script>
 
