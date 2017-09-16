@@ -189,3 +189,6 @@ font
     src: url('../../../web/vendor/bootstrap/fonts/HelveticaNeue-Thin.otf') format('otf');
 }
 
+#page-wrapper{
+    height: 80em;
+}
