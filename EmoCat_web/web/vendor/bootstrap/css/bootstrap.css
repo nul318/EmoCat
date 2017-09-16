@@ -1101,7 +1101,7 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: dimgrey;
   text-decoration: none;
 }
 a:hover,
@@ -4489,7 +4489,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left !important;
   }
   .navbar-right {
-    float: right !important;
     margin-right: -15px;
   }
   .navbar-right ~ .navbar-right {
