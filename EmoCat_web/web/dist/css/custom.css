@@ -25,7 +25,12 @@
 .sidebar-search{
     width: 15em;
     float: left;
-    margin-right: 3em;
+    margin-right: 1.5em;
+}
+.account-btn .btn{
+    width: 8em;
+    border-radius: 4.5em;
+    border-width: 0;
 }
 
 .accout {
@@ -154,7 +159,12 @@
     background-color: transparent;
     border: none;
 }
-.palette-img {
-    background-image: url('../../vendor/bootstrap/img/palette.png');
-    background-color: black;
+.palette-icon ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0.5em;
+}
+
+.custom .right-bar p{
+    font-size: 1.2em;
 }
