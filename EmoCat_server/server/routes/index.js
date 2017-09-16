@@ -29,14 +29,40 @@ function auth(req, res, next){
 }
 
 router.post('/emoInfo', function (req, res, next){
-  models.emoticon.create({
-    happiness: req.query.happiness,
-    face_id : req.query.face_id,
-  }).then(function(){
-    res.send({result: true});
-    console.log(req.query.device_id + "의 감정 상태가 추가되었습니다.");
-  }).catch(function(){
-    res.send({result: false});
+  models.device.findOne({
+    where: {
+      deviceId: req.query.device_id
+    }
+  }).then(function(data){
+    models.emoticon.create({
+      happiness: req.query.happiness,
+      face_id : req.query.face_id,
+      device_id: data.dataValues.id
+    }).then(function(){
+      res.send({result: true});
+      console.log(req.query.device_id + "의 감정 상태가 추가되었습니다.");
+    }).catch(function(){
+      res.send({result: false});
+    });
+  })
+})
+
+router.get('/happiness', function(req, res){
+  models.device.findOne({
+    where: {
+      deviceId: req.query.device_id
+    }
+  }).then(function(data){
+    models.emoticon.findOne({
+      where: {
+        device_id: data.dataValues.id
+      },
+      order: [['updatedAt', 'DESC']]
+    }).then(function(latest){
+      res.set('Access-Control-Allow-Origin', '*');
+      res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+      res.send(latest);
+    });
   });
 })
 
@@ -44,14 +70,28 @@ router.get('/info/user/:uid/:id', function(req, res){
   var recentData = {};
 
   models.emoticon.findAll({
-    include: { model: models.device, include: [models.user]},
+    include: { model: models.device, include: { model: models.user, where: { uid: req.params.uid }}, required: true},
+    where:
+      {id: { gt: req.params.id }}
   }).then(function(data){
     res.send(data);
   })
 });
 
-router.get('/info/device/:device_id/id', function(req, res){
-
+router.get('/info/device/:device_id/:id', function(req, res){
+  models.emoticon.findAll({
+    include: {model: models.device, required: true, where: { deviceId: req.params.device_id }},
+    where: {
+      id: { gt: req.params.id }
+    },
+    order: [['id', 'DESC']],
+    limit: 20
+  }).then(function(data){
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    if(data) res.send(data);
+    else res.send({result: false});
+  });
 });
 
 

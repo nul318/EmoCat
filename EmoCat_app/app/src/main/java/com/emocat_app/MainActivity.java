@@ -60,6 +60,11 @@ public final class MainActivity extends AppCompatActivity {
     static Context con;
     static Handler handler;
     static String device_id;
+
+    static Boolean time_check = false;
+
+
+
     /**
      * Initializes the UI and initiates the creation of a face detector.
      */
@@ -71,7 +76,8 @@ public final class MainActivity extends AppCompatActivity {
         handler = new Handler();
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
-        device_id = Settings.Secure.getString(con.getContentResolver(), Settings.Secure.ANDROID_ID);
+//        device_id = Settings.Secure.getString(con.getContentResolver(), Settings.Secure.ANDROID_ID);
+        device_id = "emocat";
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -81,6 +87,26 @@ public final class MainActivity extends AppCompatActivity {
         } else {
             requestCameraPermission();
         }
+
+
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                while(true){
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    time_check = true;
+                }
+            }
+        }).start();
+
     }
 
     /**
@@ -113,6 +139,13 @@ public final class MainActivity extends AppCompatActivity {
                 Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.ok, listener)
                 .show();
+
+
+
+
+
+
+
     }
 
     /**
@@ -147,6 +180,7 @@ public final class MainActivity extends AppCompatActivity {
                 .setRequestedPreviewSize(640, 480)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedFps(30.0f)
+                .setAutoFocusEnabled(true)
                 .build();
     }
 

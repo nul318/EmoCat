@@ -1,0 +1,194 @@
+.navbar-brand {
+    margin-top: 0.2em;
+    font-size: 2em;
+    font-family: "Hevel-Roman";
+
+
+}
+
+
+.navbar-top-links{
+    margin-top : 0.9em;
+    margin-bottom: 0.7em;
+    float: right;
+}
+
+
+@media (min-width: 768px) {
+    .sidebar{
+        margin-top: 4.4em;
+    }
+}
+
+
+.sidebar .sidebar-nav.navbar-collapse{
+    width: 100%;
+}
+
+
+.sidebar-search{
+    width: 15em;
+    float: left;
+    margin-right: 1.5em;
+}
+
+.account-btn .btn{
+    width: 8em;
+    border-radius: 4.5em;
+    border-width: 0;
+    font-family: "Hevel-Roman";
+    background-color: #fafafa;
+}
+
+
+
+.accout {
+    width: 100%;
+}
+.account-btn {
+    float: right;
+    margin-right: 3em;
+
+}
+
+.nav .navbar-top-links .navbar-right{
+    float: right;
+}
+
+.sidebar-nav{
+    background-color: white;
+    font-family: "Hevel-light";
+    letter-spacing: 0.18em;
+}
+
+.sidebar ul li {
+    border-bottom: none !important;
+
+}
+
+.sidebar ul li a.active{
+    background-color: #ff8074;
+    color: white;
+}
+.below-nav {
+    display: inline-block;
+    position: absolute;
+
+}
+/**header**/
+
+/**body**/
+
+.content{
+    padding: 3em;
+}
+
+.title {
+    width: 30em;
+    margin-bottom: 0.6em;
+}
+.text{
+    width: 20em;
+    margin-bottom: 2em;
+    color: dimgrey;
+}
+.date{
+    width: 10em;
+    margin-bottom: 4em;
+}
+
+/**custom**/
+.data-panel {
+    margin-top: 3em;
+    padding: 2em;
+
+    background-color: #e7e7e7;
+
+}
+.data-container{
+    width: 100%;
+    display: inline-block;
+}
+
+.right-bar {
+    padding : 0;
+     width: 25%;
+}
+.device ul li{
+  list-style: none;
+}
+@media (min-width: 768px) {
+    .data-panel{
+        width: 45em;
+        height : 35em;
+    }
+}
+
+@media (max-width: 768px) {
+    .data-panel {
+        width: 35em;
+        height: 25em;
+    }
+}
+
+.right-bar{
+    padding-top: 8em;
+}
+
+.palette{
+    padding-top: 5em;
+    padding-left: 3em;
+}
+
+/**home**/
+.EmoHome .home_page {
+    position: absolute;
+    top:0; left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('../../vendor/bootstrap/img/homeimg.png');
+    background-color: #e7e7e7;;
+}
+.EmoHome2 .home_page {
+    position: absolute;
+    top:0; left: 0;
+    width: 100%;
+    height: 120%;
+    background-image: url('../../vendor/bootstrap/img/homeimg2.png');
+    background-color: black;
+}
+
+.EmoHome .navbar-default{
+    background-color: transparent;
+    border: none;
+}
+
+.EmoHome2 .navbar-default{
+    background-color: transparent;
+    border: none;
+}
+.palette-icon ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0.5em;
+}
+
+text[text-anchor="middle"]{
+    display:none
+}
+
+/**
+font
+ */
+@font-face {
+    font-family: 'Hevel-Roman';
+    src: url('../../../web/vendor/bootstrap/fonts/HelveticaNeue-Roman.otf') format('otf');
+}
+@font-face {
+    font-family: 'Hevel-light';
+    src: url('../../../web/vendor/bootstrap/fonts/HelveticaNeue-Thin.otf') format('otf');
+}
+
+#page-wrapper{
+    height: 80em;
+}

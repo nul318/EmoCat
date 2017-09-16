@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>EmoCat- chart</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/custom.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper" style="height: 1400px;">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">EMOCAT</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="">
+                    <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                </div><!--searchbar-->
+            </li>
+            <li>
+                <div class="accout">
+                        <span class="account-btn">
+                            <button type="button" class="btn btn-default">Tonny</button>
+                        </span>
+                </div>
+            </li> <!--accout-->
+
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="chart.html"><i class="fa fa-line-chart" aria-hidden="true fa-fw"></i> Chart</a>
+                    </li>
+
+                    <li>
+                        <a href="custom.html"><i class="fa fa-table fa-fw"></i> Custom</a>
+                    </li>
+                    <li>
+                        <a href="qna.html"><i class="fa fa-edit fa-fw"></i> QnA</a>
+                    </li>
+
+
+                </ul>
+                <!--
+                <div class="below-nav">
+                    <button type="button" class="btn btn-default col-lg-12 col-md-12">Web Guide</button>
+                    <button type="button" class="btn btn-default col-lg-12 col-md-12">QnA</button>
+                </div>
+                -->
+            </div>
+            <!-- /.sidebar-collapse -->
+
+
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper" style="height: 100%;">
+        <div class="content">
+            <div class="title">
+                <div class="dropdown">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>EmoCat</option>
+                            <option>Project 2</option>
+                            <option>Project 3</option>
+                            <option>Project 4</option>
+                            <option>Project 5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="date">
+                <div class="dropdown">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>2017.09.17</option>
+                            <option>2017.09.18</option>
+                            <option>2017.09.22</option>
+                            <option>2017.09.29</option>
+                            <option>2017.10.03</option>
+                            <option>2017.10.10</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="chart col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Monitoring Chart(device1)
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div  class="panel-body">
+                        <div  id="morris-area-chart1"></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="chart col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Monitoring Chart(device2)
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div  class="panel-body">
+                        <div  id="morris-area-chart2"></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <!--<script src="../data/morris-data.js"></script>-->
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/ajax.js"></script>
+
+</body>
+
+</html>

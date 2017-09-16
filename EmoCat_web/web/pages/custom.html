@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>EmoCat- custom</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/custom.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div id="wrapper" class="custom"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">EMOCAT</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="">
+                    <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                </div><!--searchbar-->
+            </li>
+            <li>
+                <div class="accout">
+                        <span class="account-btn">
+                            <button type="button" class="btn btn-default">Tonny</button>
+                        </span>
+                </div>
+            </li> <!--accout-->
+
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="chart.html"><i class="fa fa-line-chart fa-fw"></i> Chart</a>
+                    </li>
+
+                    <li>
+                        <a href="custom.html"><i class="fa fa-table fa-fw"></i> Custom</a>
+                    </li>
+                    <li>
+                        <a href="qna.html"><i class="fa fa-edit fa-fw"></i> QnA</a>
+                    </li>
+
+
+                </ul>
+                <!--
+                <div class="below-nav">
+                    <button type="button" class="btn btn-default col-lg-12 col-md-12">Web Guide</button>
+                    <button type="button" class="btn btn-default col-lg-12 col-md-12">QnA</button>
+                </div>
+                -->
+            </div>
+            <!-- /.sidebar-collapse -->
+
+
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="content">
+            <div class="title">
+                <div class="dropdown">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option>Project 1</option>
+                            <option>Project 2</option>
+                            <option>Project 3</option>
+                            <option>Project 4</option>
+                            <option>Project 5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div   class="data-container">
+                <div class="data-panel col-md-8 col-sm-8">
+                    <canvas id="canvas" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px;"></canvas>
+                </div>
+                <div class="right-bar col-md-4 col-sm-4">
+                    <div class="device">
+                        <ul>
+                            <li style="height: 25%">
+                                <div id="device0" style="display: none">
+                                    <p>Device 1</p>
+                                    <div class="dropdown">
+                                        <div class="form-group">
+                                            <select id="cameraSel0" class="form-control">
+                                                <option value="emocat">d00da5e9</option>
+                                                <option value="emocat2">652d17dfa1ea</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li style="height: 25%">
+                                <div id="device1" style="display: none">
+                                    <p>Device 2</p>
+                                    <div class="dropdown">
+                                        <div class="form-group">
+                                            <select id="cameraSel1" class="form-control">
+                                                <option value="emocat">d00da5e9</option>
+                                                <option value="emocat2">652d17dfa1ea</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="palette">
+                        <p>Palette</p>
+                        <div class="palette-icon">
+                        <ul>
+                            <li>
+                                <a><img src ="../vendor/bootstrap/img/p1.png" onclick="MakeCam()"></a>
+                            </li>
+                            <li>
+                                <a><img src ="../vendor/bootstrap/img/p2.png" onclick="MakeTab()"></a>
+                            </li>
+                            <li>
+                                <a><img src ="../vendor/bootstrap/img/p3.png" onclick="MakeChr()"></a>
+                            </li>
+                            <li>
+                                <a><img src ="../vendor/bootstrap/img/p4.png" onclick="RotateObj()"></a>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../js/ocanvas-2.8.10.js"></script>
+    <script type="text/javascript">
+
+      var dest = "http://45.76.99.126:8090";
+      // var dest = "http://127.0.0.1:3000";
+        $(document).ready(function($){
+          $.ajax({
+            url: dest + '/happiness?device_id=' + 'emocat',
+            crossDomain: true,
+            type: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function(data){
+              ChageColorCam('emocat', data.happiness);
+            }
+          });
+
+          $.ajax({
+            url: dest + '/happiness?device_id=' + 'emocat2',
+            crossDomain: true,
+            type: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function(data){
+              ChageColorCam('emocat2', data.happiness);
+            }
+          });
+
+          setInterval(function(){
+            $.getJSON(dest + '/happiness?device_id=' + 'emocat', function(result){
+              console.log(result.happiness);
+              ChageColorCam('emocat', result.happiness);
+            })
+            $.getJSON(dest + '/happiness?device_id=' + 'emocat2', function(result){
+              console.log(result.happiness);
+              ChageColorCam('emocat2', result.happiness);
+            })
+          }, 1000);
+        });
+
+        var colorList = ["#E6D2C0", "#D5B191", "#C59269", "#B77844", "#A96026", "#906139", "#745B44", "#927350", "#C38743", "#F7931D", "#F9A64A"];
+        var beforeHappy = 0;
+        var cameraNmIndex = 0;
+        var cameraNmArr = [];
+
+        var canvas = oCanvas.create({
+            canvas: "#canvas"
+        });
+        
+        var tablesIndex = 0;
+        var tables = [];
+
+        var camerasIndex = 0;
+        var cameras = [];
+
+        var chairsIndex = 0;
+        var chairs = [];
+
+        var rotateOn = false;
+        var rotating = false;
+        var rotatingTarget = null;
+
+        var dragOptions = { changeZindex: true };
+
+        var colorNum = 0;
+        var colorVal = 0;
+
+        function ChageColorCam(deviceId, happy) {
+            var happyValue = colorList[Math.round((colorList.length - 1) * happy)];
+
+            if (cameras[0] != null && cameraSel0.value == deviceId){
+                cameras[0].fill = happyValue;
+            }
+            if (cameras[1] != null && cameraSel1.value == deviceId) {
+                cameras[1].fill = happyValue;
+            }
+        }
+        var test_deviceId = 'emocat';
+        var test_happy = 0;
+        canvas.setLoop(function () {
+//            ChageColorCam(test_deviceId, happy);
+            if (rotateOn && rotating){
+                rotatingTarget.rotation++;
+            }
+        });
+
+        function Testing() {
+            test_happy += 0.05;
+            if (test_happy >= 1)
+                test_happy = 0;
+        }
+
+//        setInterval('Testing()', 1000);
+
+        function MakeCam() {
+            if (camerasIndex < 2) {
+                document.getElementById("device" + camerasIndex).style.display = 'block';
+
+                cameras[camerasIndex] = canvas.display.ellipse({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    radius_x: 30,
+                    radius_y: 20,
+                    fill: "#111111",
+                    opacity: 0.5,
+                    pieSection: true
+                });
+
+                cameras[camerasIndex].bind("mousedown touchstart", function () {
+                    if (!rotateOn && rotating) {
+                        rotateOn = true;
+                        rotatingTarget = this;
+                        rotatingTarget.dragAndDrop(false);
+                    }
+                });
+                cameras[camerasIndex].bind("mouseup touchend", function () {
+                    if (rotateOn && rotating) {
+                        rotateOn = false;
+                        rotatingTarget.dragAndDrop(dragOptions);
+                        rotatingTarget = null;
+                    }
+                });
+                cameras[camerasIndex].bind("mouseleave touchleave", function () {
+                    if (rotateOn && rotating) {
+                        rotateOn = false;
+                        rotatingTarget.dragAndDrop(dragOptions);
+                        rotatingTarget = null;
+                    }
+                });
+                canvas.addChild(cameras[camerasIndex]);
+                cameras[camerasIndex++].dragAndDrop(dragOptions);
+            }
+        }
+        function MakeTab() {
+            tables[tablesIndex] = canvas.display.rectangle({
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                origin: { x: "center", y: "center" },
+                width: 60,
+                height: 15,
+                stroke: "1px #079",
+                join: "round"
+            });
+
+            tables[tablesIndex].bind("mousedown touchstart", function () {
+                if (!rotateOn && rotating) {
+                    rotateOn = true;
+                    rotatingTarget = this;
+                    rotatingTarget.dragAndDrop(false);
+                }
+            });
+            tables[tablesIndex].bind("mouseup touchend", function () {
+                if ( rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+                
+            });
+            tables[tablesIndex].bind("mouseleave touchleave", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            canvas.addChild(tables[tablesIndex]);
+            tables[tablesIndex++].dragAndDrop(dragOptions);
+        }
+        function MakeChr() {
+            chairs[chairsIndex] = canvas.display.rectangle({
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                origin: { x: "center", y: "center" },
+                width: 15,
+                height: 10,
+                stroke: "1px #079",
+                join: "round"
+            });
+
+            chairs[chairsIndex].bind("mousedown touchstart", function () {
+                if (!rotateOn && rotating) {
+                    rotateOn = true;
+                    rotatingTarget = this;
+                    rotatingTarget.dragAndDrop(false);
+                }
+            });
+            chairs[chairsIndex].bind("mouseup touchend", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            chairs[chairsIndex].bind("mouseleave touchleave", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            canvas.addChild(chairs[chairsIndex]);
+            chairs[chairsIndex++].dragAndDrop(dragOptions);
+        }
+        function RotateObj() {
+            rotating = !rotating;
+        }
+        canvas.timeline.start();
+    </script>
+</body>
+
+</html>

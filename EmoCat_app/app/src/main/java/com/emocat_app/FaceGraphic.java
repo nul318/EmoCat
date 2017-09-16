@@ -31,6 +31,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 import static com.emocat_app.MainActivity.device_id;
+import static com.emocat_app.MainActivity.time_check;
 
 /**
  * Graphic instance for rendering face position, orientation, and landmarks within an associated
@@ -47,7 +48,10 @@ class FaceGraphic extends GraphicOverlay.Graphic {
 
     HttpUtil postEmotion = new HttpUtil();
 
-    int cnt =0;
+//    int cnt =0;
+    float happinessAvg = 0;
+    float happinessTotal = 0;
+    float faceCnt = 0;
 
 
     private static final int COLOR_CHOICES[] = {
@@ -111,7 +115,9 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         if (face == null) {
             return;
         }
-        cnt++;
+//        cnt++;
+
+
 
         // Draws a circle at the position of the detected face, with the face's track id below.
         float x = translateX(face.getPosition().x + face.getWidth() / 2);
@@ -122,17 +128,33 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         canvas.drawText("right eye: " + String.format("%.2f", face.getIsRightEyeOpenProbability()), x + ID_X_OFFSET * 2, y + ID_Y_OFFSET * 2, mIdPaint);
         canvas.drawText("left eye: " + String.format("%.2f", face.getIsLeftEyeOpenProbability()), x - ID_X_OFFSET*2, y - ID_Y_OFFSET*2, mIdPaint);
 
-        if(cnt==5){
-            cnt=0;
-            if(face.getIsSmilingProbability()<0){
-                return;
-            }
+        if(face.getIsSmilingProbability()<0){
+            return;
+        }
 
-            postEmotion.setUrl("http://45.76.99.126:8000/emoInfo?device_id=" + device_id + "&happiness=" + String.format("%.2f", face.getIsSmilingProbability()) +
+        faceCnt++;
+
+        happinessTotal += face.getIsSmilingProbability();
+        happinessAvg = happinessTotal / faceCnt;
+
+
+        if(time_check){
+//            cnt=0;
+            time_check = false;
+            Log.e("happinessAvg", String.valueOf(happinessAvg));
+            Log.e("faceCnt", String.valueOf(faceCnt));
+            Log.e("happiness", String.valueOf(face.getIsSmilingProbability()));
+            Log.e("happinessTotal", String.valueOf(happinessTotal));
+
+
+
+
+            postEmotion.setUrl("http://45.76.99.126:8090/emoInfo?device_id=" + device_id + "&happiness=" + happinessAvg +
             "&face_id=" + String.valueOf(mFaceId)
             )
                     .setData("device_id", device_id)
-                    .setData("happiness",String.format("%.2f", face.getIsSmilingProbability()))
+//                    .setData("happiness",String.format("%.2f", face.getIsSmilingProbability()))
+                    .setData("happiness", String.valueOf(happinessAvg))
                     .setData("face_id",String.valueOf(mFaceId))
                     .setMethod(postEmotion.HTTP_METHOD_POST)
                     .setCallback(new Callback() {
@@ -159,6 +181,16 @@ class FaceGraphic extends GraphicOverlay.Graphic {
         float right = x + xOffset;
         float bottom = y + yOffset;
         canvas.drawRect(left, top, right, bottom, mBoxPaint);
+
+
+        happinessAvg=0;
+        faceCnt=0;
+        happinessTotal=0;
+
+
+
+
+
     }
 
 
