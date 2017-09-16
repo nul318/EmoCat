@@ -159,8 +159,6 @@
     background-color: black;
 }
 
-
-
 .EmoHome .navbar-default{
     background-color: transparent;
     border: none;
@@ -191,3 +189,4 @@ font
     font-family: 'Hevel-light';
     src: url('../../../web/vendor/bootstrap/fonts/HelveticaNeue-Thin.otf') format('otf');
 }
+
