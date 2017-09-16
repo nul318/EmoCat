@@ -81,9 +81,11 @@ router.get('/info/device/:device_id/:id', function(req, res){
     include: {model: models.device, required: true, where: { deviceId: req.params.device_id }},
     where: {
       id: { gt: req.params.id }
-    }
+    },
+    order: [['id', 'DESC']],
+    limit: 20
   }).then(function(data){
-    if(data.length()>1) res.send(data);
+    if(data) res.send(data);
     else res.send({result: false});
   });
 });

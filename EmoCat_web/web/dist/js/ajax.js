@@ -1,6 +1,7 @@
-var dest = "http://45.76.99.126:8090";
+
 var recentId = 1;
-// var dest = "http://localhost:8090";
+var dest = "http://45.76.99.126:8090";
+// var dest = "http://localhost:3000";
 
 $(document).ready(function($){
   $.ajaxSetup({ cache: false });
@@ -22,6 +23,7 @@ function EmoticonChart(){
         data: data,
         xkey: 'updatedAt',
         xLabelAngle: 45,
+        hideHover: 'auto',
         ykeys: ['happiness'],
         pointSize: 0,
         xLabelMargin: 1,
@@ -39,10 +41,6 @@ function EmoticonChart(){
 
 function Update(mainGraph){
   $.getJSON(dest + '/info/device/emocat/' + recentId, function(result){
-    console.log(mainGraph);
-    result.forEach(function(item, index, object){
-      if(item.updatedAt < Date.now().setHours(Date.now().getHour()-1)) object.splice(index,1);
-    });
-    if(result.result != false) mainGraph.setData(result)
+    mainGraph.setData(result)
   });
 }
