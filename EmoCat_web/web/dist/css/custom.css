@@ -1,0 +1,62 @@
+.navbar-brand {
+    margin-top: 0.2em;
+    font-size: 2em;
+}
+
+.navbar-top-links{
+    margin-top : 0.9em;
+    margin-bottom: 0.7em;
+    float: right;
+}
+
+
+@media (min-width: 768px) {
+    .sidebar{
+        margin-top: 4.4em;
+    }
+}
+
+
+.sidebar .sidebar-nav.navbar-collapse{
+    width: 100%;
+}
+
+
+.sidebar-search{
+    width: 15em;
+    float: left;
+    margin-right: 3em;
+}
+
+.accout {
+    width: 100%;
+}
+.account-btn {
+    float: right;
+    margin-right: 3em;
+}
+
+.nav .navbar-top-links .navbar-right{
+    float: right;
+}
+
+.sidebar-nav{
+    background-color: white;
+
+
+}
+
+.sidebar ul li {
+    border-bottom: none !important;
+
+}
+
+.sidebar ul li a.active{
+    background-color: #ff8074;
+    color: white;
+}
+.below-nav {
+    display: inline-block;
+    position: absolute;
+
+}
