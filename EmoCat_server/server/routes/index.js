@@ -59,6 +59,8 @@ router.get('/happiness', function(req, res){
       },
       order: [['updatedAt', 'DESC']]
     }).then(function(latest){
+      res.set('Access-Control-Allow-Origin', '*');
+      res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       res.send(latest);
     });
   });
