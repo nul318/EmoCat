@@ -13,6 +13,9 @@ var config = require('./config/config.json')[process.env.NODE_ENV || "developmen
 var viewPath = config.path;
 var session = require('express-session');
 var sequelize = require('sequelize');
+var cors = require('cors');
+
+
 
 console.log(process.env.NODE_ENV);
 
@@ -43,6 +46,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
+app.use(cors());
 
 //error handling
 app.use(function(err, req, res, next) {
