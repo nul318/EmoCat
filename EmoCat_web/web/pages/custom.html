@@ -34,12 +34,11 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
 
-<div id="wrapper" class="custom">
+<div id="wrapper" class="custom"></div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -131,34 +130,38 @@
                 <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
             </div>
 
-            <div class="data-container">
+            <div   class="data-container">
                 <div class="data-panel col-md-8 col-sm-8">
-                    aaa
+                    <canvas id="canvas" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px;"></canvas>
                 </div>
                 <div class="right-bar col-md-4 col-sm-4">
                     <div class="device">
                         <ul>
-                            <li>
-                                <p>Device 1</p>
-                                <div class="dropdown">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option>ID 001</option>
-                                            <option>ID 002</option>
-                                            <option>ID 003</option>
-                                        </select>
+                            <li style="height: 25%">
+                                <div id="device0" style="display: none">
+                                    <p>Device 1</p>
+                                    <div class="dropdown">
+                                        <div class="form-group">
+                                            <select id="cameraSel0" class="form-control">
+                                                <option>ID 001</option>
+                                                <option>ID 002</option>
+                                                <option>ID 003</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <p>Device 2</p>
-                                <div class="dropdown">
-                                    <div class="form-group">
-                                        <select class="form-control">
-                                            <option>ID 001</option>
-                                            <option>ID 002</option>
-                                            <option>ID 003</option>
-                                        </select>
+                            <li style="height: 25%">
+                                <div id="device1" style="display: none">
+                                    <p>Device 2</p>
+                                    <div class="dropdown">
+                                        <div class="form-group">
+                                            <select id="cameraSel1" class="form-control">
+                                                <option>ID 001</option>
+                                                <option>ID 002</option>
+                                                <option>ID 003</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -173,16 +176,16 @@
                         <div class="palette-icon">
                         <ul>
                             <li>
-                                <a><img src ="../vendor/bootstrap/img/p1.png"></a>
+                                <a><img src ="../vendor/bootstrap/img/p1.png" onclick="MakeCam()"></a>
                             </li>
                             <li>
-                                <a><img src ="../vendor/bootstrap/img/p2.png"></a>
+                                <a><img src ="../vendor/bootstrap/img/p2.png" onclick="MakeTab()"></a>
                             </li>
                             <li>
-                                <a><img src ="../vendor/bootstrap/img/p3.png"></a>
+                                <a><img src ="../vendor/bootstrap/img/p3.png" onclick="MakeChr()"></a>
                             </li>
                             <li>
-                                <a><img src ="../vendor/bootstrap/img/p4.png"></a>
+                                <a><img src ="../vendor/bootstrap/img/p4.png" onclick="RotateObj()"></a>
                             </li>
                         </ul>
                         </div>
@@ -211,7 +214,180 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../js/ocanvas-2.8.10.js"></script>
+    <script type="text/javascript">
+        var colorList = ["#E6D2C0", "#D5B191", "#C59269", "#B77844", "#A96026", "#906139", "#745B44", "#927350", "#C38743", "#F7931D", "#F9A64A"];
+        var beforeHappy = 0;
+        var cameraNmIndex = 0;
+        var cameraNmArr = [];
 
+        var canvas = oCanvas.create({
+            canvas: "#canvas"
+        });
+        
+        var tablesIndex = 0;
+        var tables = [];
+
+        var camerasIndex = 0;
+        var cameras = [];
+
+        var chairsIndex = 0;
+        var chairs = [];
+
+        var rotateOn = false;
+        var rotating = false;
+        var rotatingTarget = null;
+
+        var dragOptions = { changeZindex: true };
+
+        var colorNum = 0;
+        var colorVal = 0;
+
+        function ChageColorCam(deviceId, happy) {
+            var happyValue = colorList[Math.round((colorList.length - 1) * happy)];
+
+            if (cameras[0] != null && cameraSel0.value == deviceId){
+                cameras[0].fill = happyValue;
+            }
+            if (cameras[1] != null && cameraSel1.value == deviceId) {
+                cameras[1].fill = happyValue;
+            }
+        }
+        var test_deviceId = 'ID 001';
+        var test_happy = 0;
+        canvas.setLoop(function () {
+            ChageColorCam(test_deviceId, test_happy);
+            if (rotateOn && rotating){
+                rotatingTarget.rotation++;
+            }
+        });
+
+        function Testing() {
+            test_happy += 0.05;
+            if (test_happy >= 1)
+                test_happy = 0;
+        }
+
+        setInterval('Testing()', 1000);
+
+        function MakeCam() {
+            if (camerasIndex < 2) {
+                document.getElementById("device" + camerasIndex).style.display = 'block';
+
+                cameras[camerasIndex] = canvas.display.ellipse({
+                    x: canvas.width / 2,
+                    y: canvas.height / 2,
+                    radius_x: 30,
+                    radius_y: 20,
+                    fill: "#111111",
+                    opacity: 0.5,
+                    pieSection: true
+                });
+
+                cameras[camerasIndex].bind("mousedown touchstart", function () {
+                    if (!rotateOn && rotating) {
+                        rotateOn = true;
+                        rotatingTarget = this;
+                        rotatingTarget.dragAndDrop(false);
+                    }
+                });
+                cameras[camerasIndex].bind("mouseup touchend", function () {
+                    if (rotateOn && rotating) {
+                        rotateOn = false;
+                        rotatingTarget.dragAndDrop(dragOptions);
+                        rotatingTarget = null;
+                    }
+                });
+                cameras[camerasIndex].bind("mouseleave touchleave", function () {
+                    if (rotateOn && rotating) {
+                        rotateOn = false;
+                        rotatingTarget.dragAndDrop(dragOptions);
+                        rotatingTarget = null;
+                    }
+                });
+                canvas.addChild(cameras[camerasIndex]);
+                cameras[camerasIndex++].dragAndDrop(dragOptions);
+            }
+        }
+        function MakeTab() {
+            tables[tablesIndex] = canvas.display.rectangle({
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                origin: { x: "center", y: "center" },
+                width: 60,
+                height: 15,
+                stroke: "1px #079",
+                join: "round"
+            });
+
+            tables[tablesIndex].bind("mousedown touchstart", function () {
+                if (!rotateOn && rotating) {
+                    rotateOn = true;
+                    rotatingTarget = this;
+                    rotatingTarget.dragAndDrop(false);
+                }
+            });
+            tables[tablesIndex].bind("mouseup touchend", function () {
+                if ( rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+                
+            });
+            tables[tablesIndex].bind("mouseleave touchleave", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            canvas.addChild(tables[tablesIndex]);
+            tables[tablesIndex++].dragAndDrop(dragOptions);
+        }
+        function MakeChr() {
+            chairs[chairsIndex] = canvas.display.rectangle({
+                x: canvas.width / 2,
+                y: canvas.height / 2,
+                origin: { x: "center", y: "center" },
+                width: 15,
+                height: 10,
+                stroke: "1px #079",
+                join: "round"
+            });
+
+            chairs[chairsIndex].bind("mousedown touchstart", function () {
+                if (!rotateOn && rotating) {
+                    rotateOn = true;
+                    rotatingTarget = this;
+                    rotatingTarget.dragAndDrop(false);
+                }
+            });
+            chairs[chairsIndex].bind("mouseup touchend", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            chairs[chairsIndex].bind("mouseleave touchleave", function () {
+                if (rotateOn && rotating) {
+                    rotateOn = false;
+                    rotatingTarget.dragAndDrop(dragOptions);
+                    rotatingTarget = null;
+                }
+
+            });
+            canvas.addChild(chairs[chairsIndex]);
+            chairs[chairsIndex++].dragAndDrop(dragOptions);
+        }
+        function RotateObj() {
+            rotating = !rotating;
+        }
+        canvas.timeline.start();
+    </script>
 </body>
 
 </html>
