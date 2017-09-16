@@ -26,9 +26,19 @@
             canvas: "#canvas"
         });
 
+        var camera = canvas.display.arc({
+            x: canvas.width / 2,
+            y: canvas.width / 2,
+            radius: 250,
+            start: 0,
+            end: 30,
+            fill: "#079",
+            pieSection: true
+        });
+
         var table = canvas.display.rectangle({
             x: canvas.width / 2,
-            y: canvas.width / 5,
+            y: canvas.width / 2,
             origin: { x: "center", y: "center" },
             width: 300,
             height: 40,
@@ -36,23 +46,23 @@
             join: "round"
         });
 
+        canvas.addChild(camera);
         canvas.addChild(table);
 
         var dragOptions = { changeZindex: true };
 
+        camera.dragAndDrop(dragOptions);
         table.dragAndDrop(dragOptions)
 
+        var colorNum = 0;
+
         canvas.setLoop(function () {
-            table.rotation++;
+            colorNum++;
+            //if (colorNum)
+            camera.fill = "#05";
         });
 
-        button.bind("click tap", function () {
-            if (canvas.timeline.running) {
-                canvas.timeline.stop();
-            } else {
-                canvas.timeline.start();
-            }
-        });
+        canvas.timeline.start();
     </script>
 
 </body>
