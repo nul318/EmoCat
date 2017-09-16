@@ -59,15 +59,20 @@ router.get('/happiness', cors(corsOptions), function(req, res){
       deviceId: req.query.device_id
     }
   }).then(function(data){
+    res.set('Access-Control-Allow-Origin', req.headers.origin || "*");
+    res.set('Access-Control-Allow-Methods', 'GET,POST,PUT,HEAD,DELETE,OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'content-Type,x-requested-with');
     models.emoticon.findOne({
       where: {
         device_id: data.dataValues.id
       },
       order: [['updatedAt', 'DESC']]
     }).then(function(latest){
-      res.set('Access-Control-Allow-Origin', '*');
-      res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization');
-      res.set('Access-Control-Max-Age', 3600);
+      // res.set('Access-Control-Allow-Origin', '*');
+      // res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization');
+      // res.set('Access-Control-Max-Age', 3600);
+
+
 
       res.send(latest);
     });
