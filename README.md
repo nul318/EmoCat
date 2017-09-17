@@ -5,7 +5,7 @@
 
 - APIs are opened to anyone who registered
 
-- Based On Mobile Vision & Node.js
+- Based On Mobile Vision & Node.js & OpenCanvas
 
 
 ## APIs
@@ -26,4 +26,13 @@
 - Response happiness scores captured by specific device
 - Just send happiness scores whose id value is over specific 'id' value
 
+
+## Used licenses
+- Mobile Vision : Apache 2.0
+
+- OpneCanvas : MIT
+
+- express.js : MIT
+
+- MYSQL : GPL v2.0
 
