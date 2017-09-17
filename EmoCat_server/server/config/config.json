@@ -1,0 +1,48 @@
+{
+  "development": {
+    "title": "Emocat",
+    "port": 3000,
+    "db": {
+      "host": "",       //DB서버주소
+      "user": "",
+      "username": "",
+      "password": "",
+      "database": "",
+      "charset": "utf8",
+      "dialect": "mysql",
+      "logging": true,
+      "multipleStatements": true,
+      "timezone": "+09:00",
+      "upload_path": "webdata/uploads"
+    },
+    "email": {
+      "id": "ciwnyg0815@gmail.com"
+    },
+    "path": {
+      "view": "/../.tmp/serve",
+      "index": "/../src"
+    }
+  },
+  "production": {
+    "title": "Emocat",
+    "port": 8090,
+    "db": {
+      "host": "",       //DB서버주소
+      "user": "",
+      "username": "",
+      "password": "",
+      "database": "",
+      "charset": "utf8",
+      "dialect": "mysql",
+      "logging": true,
+      "multipleStatements": true,
+      "timezone": "+09:00",
+      "upload_path": "webdata/uploads"
+    },
+    "path": {
+      "view": "/../dist",
+      "index": "/../dist",
+      "src": "/../src"
+    }
+  }
+}
