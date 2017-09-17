@@ -81,7 +81,6 @@ router.get('/happiness', cors(corsOptions), function(req, res){
 
 router.get('/info/user/:uid/:id', function(req, res){
   var recentData = {};
-
   models.emoticon.findAll({
     include: { model: models.device, include: { model: models.user, where: { uid: req.params.uid }}, required: true},
     where:
